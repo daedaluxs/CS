@@ -1,0 +1,7 @@
+1: Web Design is a reference to the design process behind creating a website, things pertaining to the layout, colors, and drawing user attention. 
+
+2: Web Development is the actual create of these design choices in code, alongside backend requirements for supporting various frontend features.
+
+3: API [ Application Programming Interface ] Is used as an interop within programs and sites, and between sites. 'Hitting' an API allows for communication between the front and back-ends of a website. Honestly, every URL itself can be viewed as an API call, requesting a certain site from a set of parameters, delimited by '/'.
+
+4: I prefer backend web development. Front end I can stand to do for 50 mins, and purely designing the site I have even smaller attention spans for. I use generic dark-theme palates, and say 'good enough', more emphasis on utility over appearance. (Although I still like a nice appearance, just so long as I can make it in an hour.)

@@ -1,0 +1,1 @@
+Out of 100. A tabular format showing the results was expected. The values shown for the different algorithms are not clearly legible. (-5). A deeper dive into the comparison between the empirical evidence found via simulation and the theoretical runtimes (best, average, and worst) was expected. (-10).

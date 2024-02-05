@@ -1,0 +1,35 @@
+A side effect is when a function relies on or modifies a resource outside its parameters. Ex.  A function accesses a variable outside its parameters, a database, a file, or the console.
+You can change how user-defined objects and structures interact with a specified operator, Ex. Changing how the + operator adds two objects instead of using a method to add them. 
+A widening conversion preserves the original value but changes how its represented, while a narrowing conversion changes the value to a data type which may not be able to represent the original value.
+Works similar to a cast – changing a value's data type.
+a and b are compared, then that result with c
+Compiler skips evaluation of sub-expressions after the value of an expression is determined.
+Any numeric value can be assigned to a numeric scalar variable.
+two-way and n-way, two options or multiple options for execution paths.
+C89, C99, Python and C++
+A C++ test variable cannot be a string, while a C# test variable can be.
+A counter-controlled loop runs on the basis of a counter, starting and ending at specified points. A logically controlled loop runs until a logical condition is either met or no longer met.
+Break exits the immediate loop being run in, continue jumps to the next iteration of the immediate loop being run in.
+Unconditional branching makes error tracing, maintenance and vulnerability patching harder.
+Guarded is a boolean proposition / precondition on statements for error avoidance and control over 'goto' portions of code. Assures an outcome.
+if a < b -> min := a; 
+
+[] a >= b -> min := b; 
+
+fi;
+
+-or-
+
+if(a<b){
+
+min=a; 
+
+}
+
+else{
+
+min =b;
+
+}
+
+This assures max is always set to the minimum value between a and b.

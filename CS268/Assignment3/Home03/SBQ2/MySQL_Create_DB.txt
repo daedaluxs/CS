@@ -1,0 +1,13 @@
+CREATE TABLE flights (
+    Id INT(4) NOT NULL AUTO_INCREMENT,
+    origin VARCHAR(50) NOT NULL,
+    destination VARCHAR(50) NOT NULL,
+    duration INTEGER NOT NULL, PRIMARY KEY (id)
+);
+
+INSERT INTO flights (origin, destination, duration) VALUES ('New York', 'London', 415);
+INSERT INTO flights (origin, destination, duration) VALUES ('Shanghai', 'Paris', 760);
+INSERT INTO flights (origin, destination, duration) VALUES ('Istanbul', 'Tokyo', 700);
+INSERT INTO flights (origin, destination, duration) VALUES ('New York', 'Paris', 435);
+INSERT INTO flights (origin, destination, duration) VALUES ('Moscow', 'Paris', 245);
+INSERT INTO flights (origin, destination, duration) VALUES ('Lima', 'New York', 455);

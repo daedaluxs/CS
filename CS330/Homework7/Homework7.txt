@@ -1,0 +1,15 @@
+A procedure executes code without returning anything, while a function executes code/commands and returns a value.
+Stack dynamic variables are temporary which are created when you call a function.
+IN variables can only be read by a function, OUT variables can only be written to by that function (and are generally sent to the calling program), INOUT variables can both be read from and written to. Similar to a global scope variable.
+Deep and Shallow binding when passing a function as an argument; Deep refers to using the environment at the time the function was passed, and Shallow refers to using the environment at the time the invoking function is called.
+Yes. A method can have the same name and different arguments, resulting in an overloaded and polymorphic nature.
+Subtype polymorphism refers to an object's ability to access any object of the same or derived types.
+Parametric polymorphism is given by a subprogram taking a generic parameter used in a type expression which details the type of the parameter. An example is when a subprogram is named in a call.
+A closure is a subprogram and the referencing environment where it was defined.
+Parameter passing methods, stack-dynamic allocation of local variables, saving the execution status of the calling program, transferring the control and arranging for the return, and access to nonlocal variables if subprogram nesting is supported.
+If out-mode parameters are used, moving the current values of those parameters to their corresponding actual parameters. If it is a function, move the functional value to a place the caller can get it. Restore the execution status of the caller. Transfer control back to the caller.
+An activation record is the format or layout of the non-code part of an executing subprogram.
+The importance is in implementing a chain of static links which connect certain activation record instances. The combination of chan and local offsets allow for a record of where the variable is being referenced.
+Blocks are user-specified local scopes for variables, implemented by being treated as parameter-less subprograms which are always called from the same location.
+In Static Scoping, program structure determines how variables are referenced. In Dynamic Scoping, the current runtime stack of the program's stack determines the referenced variable.
+In Shallow Access, locals are put in a central place with a stack allocated for each variable name, with a table per entry. In Deep Access non-local references are found by searching the activation record instances on the dynamic chain.

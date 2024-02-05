@@ -1,0 +1,49 @@
+Define syntax and semantics. 
+
+Syntax is the form or structure of expressions, statements and program units. Semantics is the meaning of those expressions, statements and units (what their effect is).
+
+What is the difference between a sentence and a sentential form?
+
+A sentential form is a string of symbols in a derivation, while a sentence only has terminal symbols.
+
+When is a grammar said to be 'ambiguous'?
+
+Grammar becomes ambiguous when it creates a sentential form that has two or more distinct parse trees.
+
+What three extensions are common to most EBNFs?
+
+EBNF added := over =>, using opt and oneof.
+
+Distinguish between static and dynamic semantics.
+
+Static semantics are only relevant prior to compiling, like types, while dynamic semantics have meaning (relevance) after compilation and in execution in expressions, statements, and prog. units.
+
+What is the primary use of attribute grammars.
+
+The primary use of attribute grammars is testing for compatibility.
+
+Describe the two levels of usage of operational semantics. 
+
+How things affect the state of the machine. (simulated and actual?) VM.
+
+What is stored in the state of the program for denotational semantics?
+
+The values of all variables is stored for denotational semantics.
+
+On what branch of mathematics are denotational and axiomatic semantics based on?
+
+Denotational and axiomatic semantics are based on mathematical logic.
+
+Explain 'weakest precondition' with an example. 
+
+Weakest precondition refers to finding the least possible value which satisfies the statement lists.
+
+Ex: {P} y= x - 1, z = y * 3, {z > 0}
+
+wp(y = x - 1; z = y * 3, Q)
+
+= wp(y = x - 1, wp(z = y * 3, z > 0))
+
+= wp(y = x - 1, y > 0)
+
+= x > 1

@@ -1,0 +1,1 @@
+1a) Second 'x' is also a free variable 1b) both 'y' variables are free 2d) y 2e) aa 2f) λy.y

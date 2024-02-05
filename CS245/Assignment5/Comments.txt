@@ -1,0 +1,1 @@
+Need to print output to a file instead of the console. (-10). Would be nice to provide, in the output, the ranked order of the average times posted by the four traversal methods

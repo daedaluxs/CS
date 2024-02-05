@@ -1,0 +1,23 @@
+1: Allows for the ability to learn new languages faster, alongside better understanding a language's strengths and weaknesses, being effective by selecting which to use when. 
+
+2: Having too many features distorts the precision of the language’s official definition as well as the purpose behind it.
+
+3: Orthogonality is the consistency of a language in its handling of data types, legally,  for example being able to add any two types together.
+
+4: Allows for quick comprehension of programs in a given language.
+
+5: Costs of a language include the time spent to write in it, compile it, and required hardware successful reproduction of the program's intended output. Training - which is affected by readability and writability, if it’s easy to learn it requires less time and training
+Writing the program - if it is difficult to write in and is not the right language for the program it will take more time to write
+Execution Efficiency - relies on the design of the language and the optimization
+Reliability - a failure in a critical system is a big deal and must be prevented. In noncritical systems repairs still must be done and it will harm the image of the developer
+Maintenance - If a program is hard to read or write then it will be difficult to make changes to. you can’t fix what you don’t understand
+
+6: The notion of Von Neumann’s architecture is that of fetch-execute-cycle. Related languages are imperative languages.
+
+7: The three implementation methods are Compilation, Pure Interpretation, and Hybrid Implementation Systems.
+
+8: ? Converting code characters to units vs to parse trees.
+
+9: A Linker takes object files and combines them into an executable.
+
+10: Benefits of pure interpreted languages include platform independence, quick execution without a compiler, and lesser memory use.
