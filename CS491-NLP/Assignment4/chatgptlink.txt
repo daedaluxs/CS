@@ -1,0 +1,2 @@
+https://chat.openai.com/share/80ce26f9-ab25-45a1-9b03-31060c20d39a
+//Just the first implementation basically, added 1e-100 for log(0)
