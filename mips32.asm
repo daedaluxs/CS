@@ -4,20 +4,18 @@
     .globl main
 
 main:
-    la $a0, somestring #load somestring for reverse_string
+    # la $a0, somestring 
+    # jal reverse_string
 
-    jal reverse_string
+     
+    
+    li $a0, 6
+    jal factorial
 
-    # move $a0, $v0
-
-    li $v0, 4
-    syscall 
 
     #End Program
     li $v0, 10
     syscall
-
-
 
 reverse_string:
     
@@ -49,4 +47,27 @@ reverse_string:
         j reverse_loop #not done, call again (recursive)
 
     end_reverse:
+        li $v0, 4
+        syscall 
+        jr $ra
+
+factorial:
+    move $t0, $a0 # load n into t0
+    li $t1, 0 # counter
+    li $t3, 1 # cumulative amount of the factorial
+
+    loop:
+        add $t1, $t1, 1  #t0 step
+        sub $t2, 
+        beqz $t2, factorized
+        mul $t2, $t0, $t1
+
+        add $t3, $t3, $t2
+
+        j loop
+
+    factorized:
+        move $a0, $t3
+        li $v0, 1
+        syscall 
         jr $ra
