@@ -52,22 +52,17 @@ reverse_string:
         jr $ra
 
 factorial:
-    move $t0, $a0 # load n into t0
-    li $t1, 0 # counter
-    li $t3, 1 # cumulative amount of the factorial
+    move $t0, $a0 #first value, and accumulated factorial
+    move $t1, $t0 #decrement counter
 
     loop:
-        add $t1, $t1, 1  #t0 step
-        sub $t2, 
-        beqz $t2, factorized
-        mul $t2, $t0, $t1
-
-        add $t3, $t3, $t2
-
-        j loop
+        sub $t1, $t1, 1  #decrement counter
+        beqz $t1, factorized #if at 0, stop. 
+        mul $t0, $t0, $t1 #multiply counter by accumulated value
+        j loop #loop, next number
 
     factorized:
-        move $a0, $t3
+        move $a0, $t0 #print statements
         li $v0, 1
         syscall 
         jr $ra
