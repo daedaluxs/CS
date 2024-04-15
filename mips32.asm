@@ -1,5 +1,10 @@
 .data 
     somestring: .asciiz "fancywordsmith"
+    matrix1: .word 7, 2   
+             .word 3, 5
+    matrix2: .word 1, 3   
+             .word 2, 1
+    result:  .space 16    # Space for the result (2x2 matrix)
 .text
     .globl main
 
@@ -7,15 +12,79 @@ main:
     # la $a0, somestring 
     # jal reverse_string
 
-     
+    # li $a0, 6 #factorial number
+    # jal factorial
+
+    li $a0, 2 #matrix size
+    la $a1, matrix2
+    jal print_matrix
+
     
-    li $a0, 6
-    jal factorial
+j exit
+# matrix_mult:
+#     la $t0, matrix1
+#     la $t1, matrix2
+#     la $t3, result
 
+#     jr $ra
 
-    #End Program
-    li $v0, 10
-    syscall
+print_matrix:
+    move $t8, $ra #;p
+    move $t1, $a0 #stored matrix size
+    li $t2, 0 #row
+    li $t3, 0 #col
+    move $t0, $a1 #address of matrix to t0
+
+    j pm_inner_loop
+
+    pm_outer_loop:
+        addi $t2, $t2, 1 #source, destination, amount -- increment outer loop
+        beq $t2, $t1, pm_end #end when outer hits 2
+        li $t3, 0 #reset inner loop
+
+    pm_inner_loop:
+        #Run loop code here
+
+        jal pw
+        
+        #-=-=-
+        addi $t3, $t3, 1
+        beq $t3, $t1, pm_outer_loop #inner hits 2, increment outer
+        
+        j pm_inner_loop
+    
+    pw:
+        move $t7, $ra
+        #making copies
+        move $t4, $t2
+        move $t5, $t3
+        sll $t4, $t4, 3 #shift left by 3 bits, aka mult by 8
+        sll $t5, $t5, 2 #shift left by 2 bits, aka mult by 4
+
+        add $t4, $t4, $t5 #combine row.col values, stored in t4
+        add $t4, $t4, $t0 #add offset to the matrix mem addr
+        li $v0, 1
+
+        lw $a0, ($t4)
+        syscall
+
+        li $v0, 11 #print character
+        li $a0, 44 #comma
+        syscall
+        
+        subi $t6, $t1, 1
+        beq $t3, $t6, newline
+
+        jr $t7
+
+    pm_end:
+        jr $t8
+
+    newline:
+        li $v0, 11
+        li $a0, '\n'
+        syscall
+        jr $t7
 
 reverse_string:
     
@@ -66,3 +135,8 @@ factorial:
         li $v0, 1
         syscall 
         jr $ra
+
+exit:
+    #End Program
+    li $v0, 10
+    syscall
