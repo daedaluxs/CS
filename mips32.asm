@@ -15,18 +15,41 @@ main:
     # li $a0, 6 #factorial number
     # jal factorial
 
-    li $a0, 2 #matrix size
-    la $a1, matrix2
-    jal print_matrix
+    # li $a0, 2 #matrix size
+    # la $a1, matrix2
+    # jal print_matrix
+
+    li $a0, 2
+    jal matrix_mult
 
     
 j exit
-# matrix_mult:
-#     la $t0, matrix1
-#     la $t1, matrix2
-#     la $t3, result
+matrix_mult:
+    la $t0, matrix1
+    la $t1, matrix2
+    la $t2, result
+    move $t3, $a0 #matrix size
+    li $t4, 0 #row
+    li $t5, 0 #col
 
-#     jr $ra
+    j matrix_inner_loop
+
+    matrix_outer_loop:
+        addi $t4, $t4, 1 #source, destination, amount -- increment outer loop
+        beq $t4, $t3, matrix_end #end when outer hits 2
+        li $t5, 0 #reset inner loop
+
+    matrix_inner_loop:
+        #Run loop code here
+        
+        #-=-=-
+        addi $t5, $t5, 1
+        beq $t5, $t3, matrix_outer_loop #inner hits 2, increment outer
+        
+        j matrix_inner_loop
+
+    matrix_end:
+        jr $ra
 
 print_matrix:
     move $t8, $ra #;p
