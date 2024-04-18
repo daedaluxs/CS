@@ -7,6 +7,9 @@
              .word 2, 1, 2
              .word 3, 5, 4
     result:  .space 36    # Space for the result (3x3 matrix)
+    node: .word 0 #data field
+          .word 0 #pointer to next node
+    head: .word 0 #pointer to the head of the linked list
 .text
     .globl main
 
@@ -27,6 +30,15 @@ main:
     jal print_matrix
     
 j exit
+insert:
+    move $t0, $a0 #getting node data from arg
+    li $v0, 9 # instruction to allocate memory (sbrk)
+    li $a0, 8 #arg for how many bytes to allocate (4 data, 4 pointer)
+    syscall
+    move $t1, $v0 #v0 is returned the address of the new node, now in t1
+
+    sw $t0, 0($t1) #store t0 data in node
+    
 matrix_mult:
     #alternative to this is $sp, allocate with addi sp sp -4x, and access with 4x(sp)
     la $t2, result
