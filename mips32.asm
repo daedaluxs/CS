@@ -1,5 +1,6 @@
 .data 
     somestring: .asciiz "fancywordsmith"
+    arrow: .asciiz "->"
     matrix1: .word 7, 2, 7 
              .word 3, 5, 2
              .word 3, 5, 6
@@ -14,31 +15,117 @@
     .globl main
 
 main:
-    # la $a0, somestring 
-    # jal reverse_string
-
-    # li $a0, 6 #factorial number
-    # jal factorial
-
-    li $a0, 3
+    #Matrix Multiplication
+    li $a0, 3 #matrix size
     la $a1, matrix1
     la $a2, matrix2
     jal matrix_mult
 
-    li $a0, 3 #matrix size
+    li $a0, 3 
     la $a1, result
     jal print_matrix
+    #Reverse String
+    la $a0, somestring 
+    jal reverse_string
+
+    #Linked List
+    li $a1, 0 #depth
+    li $a0, 5 #value
+    jal insert
+    li $a0, 12
+    jal insert
+    li $a0, 8 
+    jal insert
+
+    jal print_list #8, 12, 5
+
+    li $a1, 2 #now depth 2
+    li $a0, 22 
+    jal insert
+    jal print_list # 8, 12, 22, 5
+
+    li $a1, 1 #delete depth 1
+    jal delete
+    jal print_list # 8, 22, 5
+
+    #Factorial 
+    li $a0, 6 #factorial number
+    jal factorial
     
-j exit
+    j exit
+
 insert:
     move $t0, $a0 #getting node data from arg
+    move $t4, $a1 #depth to insert 
     li $v0, 9 # instruction to allocate memory (sbrk)
     li $a0, 8 #arg for how many bytes to allocate (4 data, 4 pointer)
     syscall
-    move $t1, $v0 #v0 is returned the address of the new node, now in t1
 
-    sw $t0, 0($t1) #store t0 data in node
-    
+    lw $t2, head #cur = node
+    la $t3, head #t3(prev) = &node
+
+    beqz $a1, insert_node #if we dont need to traverse deeper
+
+    insert_at_depth:
+        la $t3, 4($t2) #t3 = &node
+        lw $t2, 4($t2) #cur = cur.next
+        addi $t4, $t4, -1 #depth = depth-1
+        beqz $t4, insert_node #if depth needed to traverse = 0
+        
+        j insert_at_depth
+
+    insert_node:
+        move $t1, $v0 #t1 = &node (new node address)
+        sw $t0, 0($t1) #node.data = data
+
+        sw $t2, 4($t1) #node.next = cur.next 
+        sw $t1, ($t3) #prev.next=node
+    jr $ra
+
+delete:
+    move $t4, $a1 #depth to delete 
+
+    lw $t2, head #cur = node
+    la $t3, head #prev = &node.next (node address)
+
+    beqz $a1, delete_node #if we dont need to traverse deeper
+
+    delete_at_depth:
+        la $t3, 4($t2) 
+        lw $t2, 4($t2) #cur = cur.next
+        addi $t4, $t4, -1 #depth = depth-1
+        beqz $t4, delete_node #if depth needed to traverse = 0
+        j delete_at_depth
+
+    delete_node:
+        lw $t5, 4($t2) #t5 = cur.next node
+
+        sw $t5, ($t3) #head/prev.next = &node 
+
+    jr $ra
+
+print_list:
+    lw $t0, head
+
+    print_loop:
+        beqz $t0, end #end when we hit zero
+        lw $a0, 0($t0) #load data of node
+        li $v0, 1 #print integer code
+        syscall
+        li $v0, 4 #print word
+        la $a0, arrow 
+        syscall
+
+        lw $t0, 4($t0) #cur = cur.next
+        j print_loop
+
+    end:
+        #print newline
+        li $v0, 11
+        li $a0, '\n'
+        syscall
+        jr $ra
+
 matrix_mult:
     #alternative to this is $sp, allocate with addi sp sp -4x, and access with 4x(sp)
     la $t2, result
@@ -209,8 +296,11 @@ reverse_string:
         j reverse_loop #not done, call again (recursive)
 
     end_reverse:
-        li $v0, 4
+        li $v0, 4 #print statements
         syscall 
+        li $v0, 11
+        li $a0, '\n'
+        syscall
         jr $ra
 
 factorial:
@@ -227,6 +317,9 @@ factorial:
         move $a0, $t0 #print statements
         li $v0, 1
         syscall 
+        li $v0, 11 #newline
+        li $a0, '\n'
+        syscall
         jr $ra
 
 exit:
